@@ -79,6 +79,7 @@ func (p *Project) New(ctx context.Context, dir string, layout string, branch str
 	}
 	fmt.Printf("🚀 Creating service %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
 	repo := base.NewRepo(layout, branch)
+	fmt.Println(111)
 	if err := repo.CopyTo(ctx, to, p.Path, []string{".git", ".github"}); err != nil {
 		return err
 	}
@@ -86,10 +87,13 @@ func (p *Project) New(ctx context.Context, dir string, layout string, branch str
 		path.Join(to, "cmd", "server"),
 		path.Join(to, "cmd", p.Name),
 	)
+	fmt.Println(222)
+
 	if e != nil {
 		return e
 	}
 	base.Tree(to, dir)
+	fmt.Println(333)
 
 	fmt.Printf("\n🍺 Project creation succeeded %s\n", color.GreenString(p.Name))
 	fmt.Print("💻 Use the following command to start the project 👇:\n\n")

@@ -60,6 +60,7 @@ func (r *Repo) Path() string {
 	var branch string
 	if r.branch == "" {
 		branch = "@master"
+		//branch = "@main"
 	} else {
 		branch = "@" + r.branch
 	}
@@ -87,9 +88,13 @@ func (r *Repo) Pull(ctx context.Context) error {
 // Clone clones the repository to cache path.
 func (r *Repo) Clone(ctx context.Context) error {
 	if _, err := os.Stat(r.Path()); !os.IsNotExist(err) {
+		fmt.Println(4321)
 		return r.Pull(ctx)
 	}
 	var cmd *exec.Cmd
+	fmt.Println(r.url)
+	fmt.Println(r.Path())
+	fmt.Println(r.branch)
 	if r.branch == "" {
 		cmd = exec.CommandContext(ctx, "git", "clone", r.url, r.Path())
 	} else {
@@ -105,10 +110,15 @@ func (r *Repo) Clone(ctx context.Context) error {
 
 // CopyTo copies the repository to project path.
 func (r *Repo) CopyTo(ctx context.Context, to string, modPath string, ignores []string) error {
+	fmt.Println(999)
+
 	if err := r.Clone(ctx); err != nil {
 		return err
 	}
+	fmt.Println(888)
 	mod, err := ModulePath(path.Join(r.Path(), "go.mod"))
+	fmt.Println(000)
+
 	if err != nil {
 		return err
 	}

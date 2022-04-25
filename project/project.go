@@ -28,9 +28,11 @@ var (
 
 func init() {
 	if repoURL = os.Getenv("TF_PROJECT_REPO"); repoURL == "" {
+		//repoURL = "https://github.com/go-kratos/kratos-layout.git"
+		//repoURL = "https://github.com/tfcp/micro-demo.git"
 		repoURL = "https://github.com/tfcp/product-demo.git"
 	}
-	timeout = "60s"
+	timeout = "6000s"
 	CmdNew.Flags().StringVarP(&repoURL, "repo-url", "r", repoURL, "layout repo")
 	CmdNew.Flags().StringVarP(&branch, "branch", "b", branch, "repo branch")
 	CmdNew.Flags().StringVarP(&timeout, "timeout", "t", timeout, "time out")
