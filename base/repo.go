@@ -88,13 +88,9 @@ func (r *Repo) Pull(ctx context.Context) error {
 // Clone clones the repository to cache path.
 func (r *Repo) Clone(ctx context.Context) error {
 	if _, err := os.Stat(r.Path()); !os.IsNotExist(err) {
-		fmt.Println(4321)
 		return r.Pull(ctx)
 	}
 	var cmd *exec.Cmd
-	fmt.Println(r.url)
-	fmt.Println(r.Path())
-	fmt.Println(r.branch)
 	if r.branch == "" {
 		cmd = exec.CommandContext(ctx, "git", "clone", r.url, r.Path())
 	} else {

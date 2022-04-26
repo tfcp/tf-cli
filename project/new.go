@@ -32,14 +32,12 @@ var newCmd = &cobra.Command{
 	Use:   "new",
 	Short: "Create a http-project template.",
 	Long:  `An tools for Go Http Project. Example: tf new demo`,
-	//Run: func(cmd *cobra.Command, args []string) {
-	//	fmt.Println("new called")
-	//},
 	Run: run,
 }
 
 func init() {
 	rootCmd.AddCommand(newCmd)
+	//newCmd.AddCommand()
 
 	// Here you will define your flags and configuration settings.
 
@@ -79,21 +77,17 @@ func (p *Project) New(ctx context.Context, dir string, layout string, branch str
 	}
 	fmt.Printf("🚀 Creating service %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
 	repo := base.NewRepo(layout, branch)
-	fmt.Println(111)
 	if err := repo.CopyTo(ctx, to, p.Path, []string{".git", ".github"}); err != nil {
 		return err
 	}
-	e := os.Rename(
-		path.Join(to, "cmd", "server"),
-		path.Join(to, "cmd", p.Name),
-	)
-	fmt.Println(222)
-
-	if e != nil {
-		return e
-	}
+	//e := os.Rename(
+	//	path.Join(to, "cmd", "server"),
+	//	path.Join(to, "cmd", p.Name),
+	//)
+	//if e != nil {
+	//	return e
+	//}
 	base.Tree(to, dir)
-	fmt.Println(333)
 
 	fmt.Printf("\n🍺 Project creation succeeded %s\n", color.GreenString(p.Name))
 	fmt.Print("💻 Use the following command to start the project 👇:\n\n")
@@ -102,7 +96,7 @@ func (p *Project) New(ctx context.Context, dir string, layout string, branch str
 	fmt.Println(color.WhiteString("$ go generate ./..."))
 	fmt.Println(color.WhiteString("$ go build -o ./bin/ ./... "))
 	fmt.Println(color.WhiteString("$ ./bin/%s -conf ./configs\n", p.Name))
-	fmt.Println("			🤝 Thanks for using Kratos")
-	fmt.Println("	📚 Tutorial: https://go-kratos.dev/docs/getting-started/start")
+	fmt.Println("			🤝 Thanks for using tf-cli")
+	fmt.Println("	📚 Tutorial: https://github.com/tfcp/product-demo")
 	return nil
 }
