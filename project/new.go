@@ -94,7 +94,8 @@ func (p *Project) New(ctx context.Context, dir string, layout string, branch str
 	fmt.Print("💻 Use the following command to start the project 👇:\n\n")
 
 	fmt.Println(color.WhiteString("$ cd %s", p.Name))
-	//fmt.Println(color.WhiteString("$ go generate ./..."))
+	fmt.Println(color.WhiteString("$ go generate ./..."))
+	fmt.Println(color.WhiteString("$ go run main server"))
 	//fmt.Println(color.WhiteString("$ go build -o ./bin/ ./... "))
 	//fmt.Println(color.WhiteString("$ ./bin/%s -conf ./configs\n", p.Name))
 	fmt.Println("			🤝 Thanks for using tf-cli")
