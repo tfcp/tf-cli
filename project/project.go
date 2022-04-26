@@ -16,7 +16,7 @@ import (
 var CmdNew = &cobra.Command{
 	Use:   "new",
 	Short: "Create a service template",
-	Long:  "Create a service project using the repository template. Example: kratos new helloworld",
+	Long:  "Create a service project using the repository template. Example: tf-cli new helloworld",
 	Run:   run,
 }
 
@@ -27,10 +27,6 @@ var (
 )
 
 func init() {
-	if repoURL = os.Getenv("TF_PROJECT_REPO"); repoURL == "" {
-		//repoURL = "https://github.com/tfcp/micro-demo.git"
-		repoURL = "https://github.com/tfcp/product-demo.git"
-	}
 	timeout = "600s"
 	CmdNew.Flags().StringVarP(&repoURL, "repo-url", "r", repoURL, "layout repo")
 	CmdNew.Flags().StringVarP(&branch, "branch", "b", branch, "repo branch")
@@ -38,6 +34,14 @@ func init() {
 }
 
 func run(cmd *cobra.Command, args []string) {
+	switch cmd.Use {
+	case "new":
+		// http
+		repoURL = "https://github.com/tfcp/product-demo.git"
+	case "micro":
+		repoURL = "https://github.com/tfcp/micro-demo.git"
+
+	}
 	wd, err := os.Getwd()
 	if err != nil {
 		panic(err)

@@ -28,15 +28,15 @@ import (
 )
 
 // newCmd represents the new command
-var newCmd = &cobra.Command{
-	Use:   "new",
+var httpCmd = &cobra.Command{
+	Use:   "http",
 	Short: "Create a http-project template.",
-	Long:  `An tools for Go Http Project. Example: tf new demo`,
+	Long:  `An tools for Go Http Project. Example: tf-cli new demo`,
 	Run: run,
 }
 
 func init() {
-	rootCmd.AddCommand(newCmd)
+	rootCmd.AddCommand(httpCmd)
 	//newCmd.AddCommand()
 
 	// Here you will define your flags and configuration settings.
