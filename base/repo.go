@@ -106,15 +106,10 @@ func (r *Repo) Clone(ctx context.Context) error {
 
 // CopyTo copies the repository to project path.
 func (r *Repo) CopyTo(ctx context.Context, to string, modPath string, ignores []string) error {
-	fmt.Println(999)
-
 	if err := r.Clone(ctx); err != nil {
 		return err
 	}
-	fmt.Println(888)
 	mod, err := ModulePath(path.Join(r.Path(), "go.mod"))
-	fmt.Println(000)
-
 	if err != nil {
 		return err
 	}

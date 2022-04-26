@@ -12,4 +12,5 @@
 
 ### 2. 命令列表
 cobra add pro
+make install
 
