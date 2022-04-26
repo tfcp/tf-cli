@@ -11,6 +11,6 @@
 |micro-demo| 微服务应用模版(go) |
 
 ### 2. 命令列表
-cobra add pro
-make install
+    cobra add pro   # 新增命令
+    make install    # 安装cli工具
 
