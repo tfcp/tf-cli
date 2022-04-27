@@ -14,3 +14,6 @@
     cobra add pro   # 新增命令
     make install    # 安装cli工具
 
+### 3. 参考文档
+https://www.qikqiak.com/post/create-cli-app-with-cobra
+

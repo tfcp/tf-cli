@@ -37,7 +37,7 @@ func init() {
 
 func run(cmd *cobra.Command, args []string) {
 	switch cmd.Use {
-	case "new":
+	case "http":
 		// http
 		repoURL = "https://github.com/tfcp/product-demo.git"
 	case "micro":
