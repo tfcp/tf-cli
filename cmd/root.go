@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package project
+package cmd
 
 import (
 	"fmt"
@@ -29,7 +29,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "tf-cli",
 	Short: "",
-	Long: `tf-cli is an interesting tools for build project template.`,
+	Long: `tf-cli is an interesting tools for build cmd template.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -48,7 +48,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.project.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cmd.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -65,10 +65,10 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-		// Search config in home directory with name ".project" (without extension).
+		// Search config in home directory with name ".cmd" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".project")
+		viper.SetConfigName(".cmd")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match

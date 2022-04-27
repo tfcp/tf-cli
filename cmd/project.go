@@ -1,4 +1,4 @@
-package project
+package cmd
 
 import (
 	"context"
@@ -18,7 +18,7 @@ import (
 var CmdNew = &cobra.Command{
 	Use:   "new",
 	Short: "Create a service template",
-	Long:  "Create a service project using the repository template. Example: tf-cli new helloworld",
+	Long:  "Create a service cmd using the repository template. Example: tf-cli new helloworld",
 	Run:   run,
 }
 
@@ -57,8 +57,8 @@ func run(cmd *cobra.Command, args []string) {
 	name := ""
 	if len(args) == 0 {
 		prompt := &survey.Input{
-			Message: "What is project name ?",
-			Help:    "Created project name.",
+			Message: "What is cmd name ?",
+			Help:    "Created cmd name.",
 		}
 		err = survey.AskOne(prompt, &name)
 		if err != nil || name == "" {
@@ -75,24 +75,24 @@ func run(cmd *cobra.Command, args []string) {
 	select {
 	case <-ctx.Done():
 		if errors.Is(ctx.Err(), context.DeadlineExceeded) {
-			fmt.Fprint(os.Stderr, "\033[31mERROR: project creation timed out\033[m\n")
+			fmt.Fprint(os.Stderr, "\033[31mERROR: cmd creation timed out\033[m\n")
 		} else {
-			fmt.Fprintf(os.Stderr, "\033[31mERROR: failed to create project(%s)\033[m\n", ctx.Err().Error())
+			fmt.Fprintf(os.Stderr, "\033[31mERROR: failed to create cmd(%s)\033[m\n", ctx.Err().Error())
 		}
 	case err = <-done:
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "\033[31mERROR: Failed to create project(%s)\033[m\n", err.Error())
+			fmt.Fprintf(os.Stderr, "\033[31mERROR: Failed to create cmd(%s)\033[m\n", err.Error())
 		}
 	}
 }
 
-// Project is a project template.
+// Project is a cmd template.
 type Project struct {
 	Name string
 	Path string
 }
 
-// New new a project from remote repo.
+// New new a cmd from remote repo.
 func (p *Project) New(ctx context.Context, dir,layout,branch string) error {
 	to := path.Join(dir, p.Name)
 	if _, err := os.Stat(to); !os.IsNotExist(err) {
@@ -100,7 +100,7 @@ func (p *Project) New(ctx context.Context, dir,layout,branch string) error {
 		override := false
 		prompt := &survey.Confirm{
 			Message: "📂 Do you want to override the folder ?",
-			Help:    "Delete the existing folder and create the project.",
+			Help:    "Delete the existing folder and create the cmd.",
 		}
 		e := survey.AskOne(prompt, &override)
 		if e != nil {
@@ -127,7 +127,7 @@ func (p *Project) New(ctx context.Context, dir,layout,branch string) error {
 	base.Tree(to, dir)
 
 	fmt.Printf("\n🍺 Project creation succeeded %s\n", color.GreenString(p.Name))
-	fmt.Print("💻 Use the following command to start the project 👇:\n\n")
+	fmt.Print("💻 Use the following command to start the cmd 👇:\n\n")
 
 	fmt.Println(color.WhiteString("$ cd %s", p.Name))
 	fmt.Println(color.WhiteString("$ go generate ./..."))

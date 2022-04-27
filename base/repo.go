@@ -104,7 +104,7 @@ func (r *Repo) Clone(ctx context.Context) error {
 	return nil
 }
 
-// CopyTo copies the repository to project path.
+// CopyTo copies the repository to cmd path.
 func (r *Repo) CopyTo(ctx context.Context, to string, modPath string, ignores []string) error {
 	if err := r.Clone(ctx); err != nil {
 		return err
