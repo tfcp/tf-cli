@@ -38,11 +38,15 @@ func init() {
 func run(cmd *cobra.Command, args []string) {
 	switch cmd.Use {
 	case "http":
-		// http
+		// 基础http服务
 		repoURL = "https://github.com/tfcp/product-demo.git"
 	case "micro":
+		// 大仓微服务
 		repoURL = "https://github.com/tfcp/micro-demo.git"
-
+	case "grpc":
+		// 基础grpc服务
+		repoURL = "https://github.com/tfcp/product-demo.git"
+		branch = "grpc"
 	}
 	wd, err := os.Getwd()
 	if err != nil {

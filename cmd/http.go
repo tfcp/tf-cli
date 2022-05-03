@@ -7,8 +7,8 @@ import (
 // newCmd represents the new command
 var httpCmd = &cobra.Command{
 	Use:   "http",
-	Short: "Create a http-cmd template.",
-	Long:  `An tools for Go Http Project. Example: tf-cli new demo`,
+	Short: "Create a basic golang http project template.",
+	Long:  `An tools for Go Http Project. Example: tf-cli http demo`,
 	Run: run,
 }
 

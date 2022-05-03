@@ -5,15 +5,15 @@ import (
 )
 
 // microCmd represents the micro command
-var microCmd = &cobra.Command{
-	Use:   "micro",
-	Short: "Create a golang micro project template.",
-	Long:  `An tools for Go micro Project. Example: tf-cli micro demo`,
+var grpcCmd = &cobra.Command{
+	Use:   "grpc",
+	Short: "Create a basic golang gRpc project template.",
+	Long:  `An tools for Go Grpc Project. Example: tf-cli grpc demo`,
 	Run: run,
 }
 
 func init() {
-	rootCmd.AddCommand(microCmd)
+	rootCmd.AddCommand(grpcCmd)
 
 	// Here you will define your flags and configuration settings.
 
